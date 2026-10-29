@@ -1,18 +1,27 @@
 import sys
 import os
 
-class Token:
-    def __init__(self):
-        pass
+line_no = 0
+output = bytearray()
 
+def file_write(outfile: str):
+    with open(outfile, "wb") as f:
+        f.write(output)   
 
-def tokenize_line(line: str):
+def parse():
     pass
+
+def assemble(lines: list[str], outfile: str):
+    for line in lines:
+        parse()
+    file_write(outfile)
+
 
 
 def main():
     if len(sys.argv) != 2:
-        print(f"usage: python {os.path.basename(sys.argv[0])} file.txt", file=sys.stderr)
+        print("usage: python main.py file.txt", file=sys.stderr)
+        return
 
     input_filename = sys.argv[1]
 
@@ -21,6 +30,7 @@ def main():
 
     with open(input_filename, "r", encoding="utf-8") as f:
         lines = f.read().splitlines()
-    print(lines)
+    print(lines, outfile)
+    assemble(lines, outfile);
 if __name__ == "__main__":
     main()
